@@ -94,7 +94,7 @@ func (r *Ring) Remove(node string) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	if !r.nodes[node] {
-		return nil
+		return fmt.Errorf("node %q not found", node)
 	}
 	kept := make([]uint32, 0, len(r.ring))
 	for _, h := range r.ring {
